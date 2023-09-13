@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 
 public class PrimaryController {
 
-     @FXML
+    @FXML
     private Button botaoSalvar;
     @FXML
     private ListView<Anotacoes> listAnotacoes;
@@ -28,7 +28,6 @@ public class PrimaryController {
     Button botaoSalvarEdicao = new Button("Salvar edição");
 
     private AnotacoesDao anotacoesDao = new AnotacoesDao();
-
     private ArrayList<Anotacoes> anotacoes = new ArrayList<>();
 
 
@@ -42,7 +41,7 @@ public class PrimaryController {
         txtAnotacoes.clear();
         txtId.clear();
 
-        mostrarAnotacoes();
+        atualizarAnotacao();
 
         try {
             anotacoesDao.inserir(anotacao);
@@ -51,19 +50,13 @@ public class PrimaryController {
         }
     }
 
-
-    public void mostrarAnotacoes() {
-
+    public void atualizarAnotacao(){
         listAnotacoes.getItems().clear();
         
         for (var anotacao : anotacoes) {
             listAnotacoes.getItems().add(anotacao);
         }
 
-        atualizarAnotacao();
-    }
-
-    public void atualizarAnotacao(){
         try {
             anotacoesDao.buscarTodos().forEach(anotacao -> listAnotacoes.getItems().add(anotacao));
         } catch (SQLException e) {
@@ -72,7 +65,6 @@ public class PrimaryController {
         alert.show();
         }
     }
-    
 
     public void apagarAnotacoes() {
         var anotacao = listAnotacoes.getSelectionModel().getSelectedItem();
@@ -85,47 +77,5 @@ public class PrimaryController {
         alert.show();
         
 
-    }
-
-    // public void editarAnotacao() {
-
-    //     var anotacao = listAnotacoes.getSelectionModel().getSelectedItem();
-
-    //     if (anotacao != null) {
-    //         panelBotoes.getChildren().remove(botaoSalvar);
-    //         panelBotoes.getChildren().add(botaoSalvarEdicao);
-    //         botaoSalvarEdicao.setOnAction(event -> salvarEdicao(anotacao));
-    //         botaoSalvarEdicao.setStyle("-fx-alignment: center_right; -fx-background-color: #8b4ab9;");
-
-    //         txtAnotacoes.setText(anotacao.anotacoes());
-    //         txtId.setText(Integer.toString(anotacao.id()));
-    //     } else {
-    //         Alert alert = new Alert(AlertType.WARNING, "Selecione um veículo para editar.");
-    //         alert.setHeaderText("ERRO!");
-    //         alert.show();
-    //     } 
-    // }
-    
-    public void salvarEdicao(Anotacoes anotacao) {
-        int indice = anotacoes.indexOf(anotacao);
-        
-        var anotacaoAlterado = new Anotacoes (txtAnotacoes.getText(),
-        Integer.parseInt(txtId.getText()));
-        
-        anotacoes.set(indice, anotacaoAlterado);
-        
-        mostrarAnotacoes();
-        
-        Alert alert = new Alert(AlertType.INFORMATION, "Edição salva!");
-        alert.setHeaderText("Editado");
-        alert.show();
-        
-        // try {
-        //     anotacoesDao.atualizar(anotacao);
-        // } catch (SQLException e) {
-        //     e.printStackTrace();
-        // }
-        // panelBotoes.getChildren().remove(botaoSalvarEdicao);
-        // panelBotoes.getChildren().add(botaoSalvar);
     }
 }

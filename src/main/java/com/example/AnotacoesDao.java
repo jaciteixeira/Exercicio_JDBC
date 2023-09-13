@@ -26,45 +26,6 @@ public class AnotacoesDao {
         con.close();
     }
 
-    // public void apagar(Anotacoes anotacao) throws SQLException {
-
-    //     var con = DriverManager.getConnection(URL, USER, PASS);
-
-    //     var sql = "DELETE FROM anotacoes WHERE id = (?) ";
-    //     var instrucao = con.prepareStatement(sql);
-    //     instrucao.setInt(1,anotacao.id());
-    //     instrucao.executeUpdate();
-    //     con.close();
-    // }
-
-    // public void atualizar(Anotacoes anotacao) throws SQLException {
-
-    //     var con = DriverManager.getConnection(URL, USER, PASS);
-    //     var sql = "UPDATE anotacoes SET anotacao =? WHERE id = ? ";
-    //     var instrucao = con.prepareStatement(sql);
-
-    //     instrucao.setString(1, anotacao.anotacoes());
-    //     instrucao.setInt(2, anotacao.id()); // Defina o valor do id
-    //     instrucao.executeUpdate();
-    //     con.commit();
-    //     con.close();
-    // }
-
-    // public List<Anotacoes> buscarTodos() throws SQLException{
-    //     var anotacoes = new ArrayList<Anotacoes>();
-    //     var con = DriverManager.getConnection(URL, USER, PASS);
-    //     var rs = con.createStatement().executeQuery("SELECT * FROM anotacoes");
-
-    //     while(rs.next()){
-    //         anotacoes.add(new Anotacoes(
-    //             rs.getString("id"), 
-    //             rs.getString("anotacao")
-    //         ));
-    //     }
-
-    //     con.close();
-    //     return anotacoes;
-    // }
 
      public List<Anotacoes> buscarTodos() throws SQLException{
         var anotacao = new ArrayList<Anotacoes>();
