@@ -51,6 +51,7 @@ public class PrimaryController {
     }
 
     public void atualizarAnotacao(){
+        
         listAnotacoes.getItems().clear();
         
         for (var anotacao : anotacoes) {
@@ -70,7 +71,6 @@ public class PrimaryController {
         var anotacao = listAnotacoes.getSelectionModel().getSelectedItem();
 
         anotacoes.remove(anotacao);
-        mostrarAnotacoes();
 
         Alert alert = new Alert(AlertType.INFORMATION, "Sua anotação foi apagada!");
         alert.setHeaderText("Removido");
